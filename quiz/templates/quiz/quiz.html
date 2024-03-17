@@ -1,0 +1,41 @@
+{% extends "base.html" %} 
+
+{% block title %}
+{{ question }}
+{% endblock title %}
+
+{% block content %}
+<form action="." class="quiz" method="GET">
+  <h1 class="quiz__question">
+    {{ question }}
+  </h1>
+  <div class="quiz__contents">
+    {% for answer in question.answers.all %}
+    {% if show_answer %}
+      <div class="quiz__answer {% if answer.is_correct %}quiz__success{% else %}quiz__error{% endif %}">
+        {{answer}}
+      </div>
+    {% else %}
+      <div class="quiz__answer">
+        <input type="radio" name="answer" id="answer{{answer.pk}}" value="{{answer.pk}}">
+        <label for="answer{{answer.pk}}">{{ answer }}</label>
+      </div>
+    {% endif %}
+    
+    {% endfor %}
+  </div>
+  {% if not show_answer %}
+  <div class="d-flex justify-content-center">
+    <button class="btn btn--submit">
+      Посмотреть ответ
+    </button>
+  </div>
+  {% else %}
+  <div class="mt-5 {% if user_answer.is_correct %}quiz__success{% else %}quiz__error{% endif %}">
+    Вы ответили:
+    
+    {{ user_answer }}
+  </div>
+  {% endif %}
+</form>
+{% endblock content %}

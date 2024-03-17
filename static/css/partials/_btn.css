@@ -1,0 +1,9 @@
+.btn.btn--submit {
+  color: #fff;
+  margin: 20px 0;
+}
+
+.btn.btn--submit:hover {
+  border-color: rgb(106, 106, 145);
+  box-shadow: 0 0 10px rgb(106, 106, 145);
+}

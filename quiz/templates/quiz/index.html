@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="quiz__list">
+  <h1 class="quiz__header">Список вопросов</h1>
+  {% for question in questions %}
+    <a href="{% url 'question-detail' question.pk %}" class="quiz__item">{{ forloop.counter }}. {{ question }}</a>
+  {% endfor %}
+</div>
+{% endblock content %}
